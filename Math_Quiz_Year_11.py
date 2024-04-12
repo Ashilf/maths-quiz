@@ -15,7 +15,8 @@ def display_result(total, correct):
     if total == 0:
         percentage = 0
     print("You answered", total, "questions with", correct, "correct.")
-    print("Your score is ", percentage, "%. Thank you.")
+    print("Your score is ", percentage, "%")
+
 #Checks users enter yes (y) or no (n)
 def yes_no(question):
 
@@ -39,15 +40,23 @@ def display_intro():
     print("Welcome To The Math Quiz " +name+ "!")
     print()
 
-#Instructions
+def get_float(question):
+    while True:
+        try:
+            response = float(input(question))
+            return response
+        except:
+            print("ERROR: Please responed in numbers! ")
+
+
+#Prints out Instructions or user
 def instructions():
     print("--------------------------------instructions----------------------------------------")
     print("                                                                                    ")
-    print("In this quiz you will be have to answer a series of questions, ")
-    print("depending on how many you get right will be your total at the end of the game.")
-    print("For every question that you mange to get correct you will be rewarded with 1 point.")
+    print("        In this quiz you will be have to answer a series of questions, ")
+    print("   depending on how many you get right will be your total at the end of the game.")
     print("                                                                                    ")
-    print("--------------------------------------------------------------------------------------")
+    print("------------------------------------------------------------------------------------")
 
 
 def game_sure():
@@ -76,8 +85,9 @@ def display_separator():
 #Getting user answer for deciding on questions
 
 
-def get_user_input():
-    user_input = int(input("Enter your choice: "))
+def get_user_input(question):
+    user_input = input(question)
+    user_input = int(user_input)
     while user_input > 5 or user_input <= 0:
         print("Invalid menu option.")
         user_input = int(input("Please try again: "))
@@ -235,17 +245,17 @@ def main():
     display_menu()
     display_separator()
 
-    option = get_user_input()
+    option = get_user_input("Enter your choice: \n")
     total = 0
     correct = 0
     while option != 5:
         total = total + 1
         correct = menu(option, correct)
-        option = get_user_input('Please enter a number between 1 and 5\n')
+        option = get_user_input('Please enter a number between 1 and 5 \n')
 
-    print("Exit the quiz.")
-    display_separator()
-    display_result(total, correct)
+        print("Exit the quiz.")
+        display_separator()
+        display_result(total, correct)
 
 
 
